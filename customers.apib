@@ -1,0 +1,114 @@
+FORMAT: 1A
+
+# Group Fragile Customers 
+
+## Customers [/api/v1/customers]
+
++ Attributes
+    + application_no (string) - The application number
+    + proposal_no (string) - The proposal number
+    + answer (array, fixed)
+        + (object)
+            + key (string) - Key question
+            + answer (string) - Answer of question
+
+### Add or Update [POST]
+
++ Request (application/json)
+
+    + Attributes (Customers)
+
++ Response 201
+
+## Customers [/api/v1/customers/proposal/{proposalNo}]
+
++ Parameters
+
+    + proposalNo (required) - Proposal number
+
+### Customer via proposal [GET]
+This action has 2 response. If it has data, it will be return `status 200`, but it hasn't data, it will be `return 204`
+
++ Response 200 (application/json)
+
+        [
+            {
+                "question": "Question1",
+                "answer": "1" 
+            },
+            {
+                "question": "Question2",
+                "answer": "2"
+            }
+        ]
+
+
++ Response 204
+
+## Customers [/api/v1/customers/application/{applicationNo}]
+
++ Parameters
+
+    + applicationNo (required) - Application number
+
+### Get customer via applicationNo [GET]
+This action has 2 response. If it has data, it will be return `status 200`, but it hasn't data, it will be `return 204`
+
++ Response 200 (application/json)
+
+        [
+            {
+                "question": "Question1",
+                "answer": "1" 
+            },
+            {
+                "question": "Question2",
+                "answer": "2"
+            }
+        ]
+
++ Response 204
+
+## Customers [/api/v1/customers/proposal/{proposalNo}/application/{applicationNo}]
+
++ Parameters
+
+    + proposalNo (required) - Proposal number
+    + applicationNo (required) - Application number
+
+### Get customer via proposal and application [GET]
+This action has 2 response. If it has data, it will be return `status 200`, but it hasn't data, it will be `return 204`
+
++ Response 200 (application/json)
+
+        [
+            {
+                "question": "Question1",
+                "answer": "1" 
+            },
+            {
+                "question": "Question2",
+                "answer": "2"
+            }
+        ]
+
++ Response 204
+
+## Customers_Verification [/api/v1/customers/verification]
+
+### Verify data customer has changed [POST]
+
++ Request (application/json)
+
+    + Attributes (Customers)
+
++ Response 200 (application/json)
+
+        {
+            "is_changing": true,
+            "data_changing": [
+                "อายุของผู้ขอเอาประกันภัย",
+                "วุฒิการศึกษาของผู้ขอเอาประกันภัย",
+                "ประสบการณ์การลงทุนของผู้ขอเอาประกันภัย"
+            ]
+        }
